@@ -96,7 +96,7 @@ public class InscripcionData {
             while(rs.next()){
                 Inscripcion insc=new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
-               // insc.setAlumno(rs.getInt("idAlumno"));
+                //insc.setAlumno=(rs.getInt("idAlumno"));
             }
             ps.close();
         } catch (SQLException ex) {
