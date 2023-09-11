@@ -87,6 +87,7 @@ public class InscripcionData {
         }
         return materias;
     }
+    /**
     public List<Inscripcion> obtenerInscripciones(){
         String sql="SELECT idInscripto, idAlumno, idMateria FROM inscripcion";
         List<Inscripcion> inscripciones = new ArrayList<>();
@@ -96,12 +97,29 @@ public class InscripcionData {
             while(rs.next()){
                 Inscripcion insc=new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
-                //insc.setAlumno=(rs.getInt("idAlumno"));
+                insc.setAlumno=(rs.getInt("idAlumno"));
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
-     
+     */
+    public List<Inscripcion> obtenerInscripcionesPorAlumno(int id){
+        String sql="SELECT idInscripto, idAlumno, idMateria FROM inscripcion WHERE idAlumno = ?";
+        List<Inscripcion> inscripciones = new ArrayList<>();
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Inscripcion insc=new Inscripcion();
+                insc.setIdInscripcion(rs.getInt("idInscripto"));
+                insc.setAlumno=(rs.getInt("idAlumno"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
+    }
 }
