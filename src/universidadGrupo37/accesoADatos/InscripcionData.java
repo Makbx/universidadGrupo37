@@ -6,7 +6,11 @@ package universidadGrupo37.accesoADatos;
 
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import universidadGrupo37.entidades.Inscripcion;
+import universidadGrupo37.entidades.Materia;
 
 /**
  *
@@ -23,5 +27,27 @@ public class InscripcionData {
     public void guardarInscripcion(Inscripcion insc){
         
     }
-    
+    public List<Materia> obtenerMateriasCursadas(int id){
+        String sql ="SELECT inscripcion.idMateria, nombre, año FROM inscripcion,"
+                +" materia WHERE inscripcion.idMateria = materia.idMateria\n"+
+                "AND inscripcion.idAlumno = ?";
+        List<Materia> materias = new ArrayList<Materia>();
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Materia materia=new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materias.add(materia);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
+        return materias;
+    }
+     
 }
