@@ -31,7 +31,28 @@ public class InscripcionData {
         String sql ="SELECT inscripcion.idMateria, nombre, año FROM inscripcion,"
                 +" materia WHERE inscripcion.idMateria = materia.idMateria\n"+
                 "AND inscripcion.idAlumno = ?";
-        List<Materia> materias = new ArrayList<Materia>();
+        List<Materia> materias = new ArrayList<>();
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Materia materia=new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materias.add(materia);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
+        return materias;
+    }
+    public List<Materia> obtenerMateriasNOCursadas(int id){
+        String sql ="SELECT materia.idMateria, nombre, año FROM inscripcion,"
+                +" materia WHERE materia.idMateria NOT IN (SELECT inscripcion.idMateria FROM inscripcion WHERE inscripcion.idAlumno = ?)";
+        List<Materia> materias = new ArrayList<>();
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1, id);
