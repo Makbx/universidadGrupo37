@@ -23,7 +23,7 @@ public class AlumnoData {
         con=Conexion.getConexion(); //cargando Drivers
     }
     public void guardadAlumno(Alumno alumno){
-        String sql="INSET INTO alumno (dni, apellido, nombre, fechaNacimiento, estado)"
+        String sql="INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado)"
                 + "VALUE(? , ?, ?, ?, ?)";
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
