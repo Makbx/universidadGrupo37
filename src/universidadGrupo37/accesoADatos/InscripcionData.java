@@ -25,6 +25,23 @@ public class InscripcionData {
         con=Conexion.getConexion();
     }
     public void guardarInscripcion(Inscripcion insc){
+        String sql="INSERT INTO inscripcion (idMateria, idAlumno)"
+                + "VALUE(? ,?)";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, insc.getMateria().getIdMateria());
+            ps.setInt(2, insc.getAlumno().getIdAlumno());
+            ps.executeUpdate();
+            
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                insc.setIdInscripcion(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Inscripcion Guardada");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
         
     }
     public List<Materia> obtenerMateriasCursadas(int id){
