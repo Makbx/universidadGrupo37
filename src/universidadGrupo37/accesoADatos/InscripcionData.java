@@ -105,8 +105,9 @@ public class InscripcionData {
         }
     }
      */
+    /**
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int id){
-        String sql="SELECT idInscripto, idAlumno, idMateria FROM inscripcion WHERE idAlumno = ?";
+        String sql="SELECT idInscripto, nombre, año FROM inscripcion, materia WHERE idAlumno = ?";
         List<Inscripcion> inscripciones = new ArrayList<>();
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -122,4 +123,5 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
+    */
 }
