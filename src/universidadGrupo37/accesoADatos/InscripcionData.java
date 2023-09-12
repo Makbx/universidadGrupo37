@@ -48,12 +48,13 @@ public class InscripcionData {
                 +" materia WHERE inscripcion.idMateria = materia.idMateria\n"+
                 "AND inscripcion.idAlumno = ?";
         List<Materia> materias = new ArrayList<>();
+        Materia materia=null;
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Materia materia=new Materia();
+                materia=new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
@@ -72,12 +73,13 @@ public class InscripcionData {
                 +" materia WHERE inscripcion.idMateria != materia.idMateria\n"
                 +"AND inscripcion.idAlumno = ?";        
         List<Materia> materias = new ArrayList<>();
+       Materia materia=null;
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Materia materia=new Materia();
+                materia=new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
@@ -92,13 +94,14 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripciones(){
         String sql="SELECT idInscripto, nota, idAlumno, idMateria FROM inscripcion";
         List<Inscripcion> inscripciones = new ArrayList<>();
+        Inscripcion insc=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Inscripcion insc=new Inscripcion();
+                insc=new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
-                                insc.setNota(rs.getInt("nota"));
+                insc.setNota(rs.getInt("nota"));
                 insc.setAlumno(aluData.buscarAlumno(rs.getInt("idAlumno")));
                 insc.setMateria(matData.buscarMateria(rs.getInt("idMateria")));
                 inscripciones.add(insc);
@@ -112,12 +115,13 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int id){
         String sql="SELECT idInscripto, nota, idAlumno, idMateria FROM inscripcion WHERE idAlumno = ?";
         List<Inscripcion> inscripciones = new ArrayList<>();
+        Inscripcion insc=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1,id);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Inscripcion insc=new Inscripcion();
+                insc=new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
                 insc.setNota(rs.getInt("nota"));
                 insc.setAlumno(aluData.buscarAlumno(rs.getInt("idAlumno")));
@@ -166,12 +170,13 @@ public class InscripcionData {
                 +" alumno WHERE inscripcion.idAlumno=alumno.idAlumno\n"
                 +"AND inscripcion.idMateria = ?";
         List<Alumno> alumnos = new ArrayList<>();
+        Alumno alumno=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                Alumno alumno=new Alumno();
+                alumno=new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
