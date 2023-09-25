@@ -119,8 +119,6 @@ public class AlumnoData {
                  alumno.setNombre(rs.getString("nombre"));
                  alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate()); //con el localDate combierto lo que esta en date en un local date para guardarlo en alumno 
                  alumno.setActivo(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "No existe ese alumno con tal dni");
             }
             ps.close();
             

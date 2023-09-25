@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2023 a las 13:47:03
+-- Tiempo de generación: 26-09-2023 a las 00:52:49
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -41,8 +41,16 @@ CREATE TABLE `alumno` (
 --
 
 INSERT INTO `alumno` (`idAlumno`, `dni`, `apellido`, `nombre`, `fechaNacimiento`, `estado`) VALUES
-(1, 12345678, 'qw', 'qwerty', '2000-09-05', 1),
-(2, 87654321, 'gfdgdfgdfg', 'asddasd', '2005-09-10', 1);
+(1, 63901302, 'Gomez', 'David', '1996-02-15', 1),
+(2, 65725492, 'Martin', 'Josefa', '1998-06-14', 1),
+(3, 67170136, 'Garcia', 'Antonio', '1998-10-27', 1),
+(4, 91982121, 'Gonzalez', 'Jose', '1996-06-26', 1),
+(5, 62353491, 'Lopez', 'Manuel', '2000-10-16', 1),
+(6, 91023706, 'Martinez', 'Francisco', '2000-09-30', 1),
+(7, 65533432, 'Sanchez', 'Carmen', '2002-08-20', 1),
+(8, 91346212, 'Perez', 'Juan', '2002-06-26', 1),
+(9, 91825209, 'Hernandez', 'Javier', '1994-08-31', 1),
+(10, 67543985, 'Diaz', 'Isabel', '1994-09-12', 1);
 
 -- --------------------------------------------------------
 
@@ -56,13 +64,6 @@ CREATE TABLE `inscripcion` (
   `idAlumno` int(11) NOT NULL,
   `idMateria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `inscripcion`
---
-
-INSERT INTO `inscripcion` (`idInscripto`, `nota`, `idAlumno`, `idMateria`) VALUES
-(2, 6, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -82,9 +83,16 @@ CREATE TABLE `materia` (
 --
 
 INSERT INTO `materia` (`idMateria`, `nombre`, `año`, `estado`) VALUES
-(1, 'asd', 1, 1),
+(1, 'Algebra 1', 1, 1),
 (2, 'Matematica 1', 1, 1),
-(3, 'Matematica 2', 2, 1);
+(3, 'Matematica 2', 2, 1),
+(4, 'Algebra 2', 2, 1),
+(5, 'Programacion 1', 1, 1),
+(6, 'Programacion 2', 2, 1),
+(7, 'Bases de datos 1', 3, 1),
+(8, 'Bases de datos 2', 4, 1),
+(9, 'Estadistica 1', 3, 1),
+(10, 'Estadistica 2', 4, 1);
 
 --
 -- Índices para tablas volcadas
@@ -122,7 +130,7 @@ ALTER TABLE `materia` ADD FULLTEXT KEY `nombre` (`nombre`);
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripcion`
@@ -134,7 +142,7 @@ ALTER TABLE `inscripcion`
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

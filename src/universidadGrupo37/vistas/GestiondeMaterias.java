@@ -218,20 +218,26 @@ public class GestiondeMaterias extends javax.swing.JInternalFrame {
 
     private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
         // TODO add your handling code here:
-        if(JTFid.getText().isEmpty() || JTFanio.getText().isEmpty() || JTFnombre.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "Debe llenar todos los campos"); 
+        if(JTFanio.getText().isEmpty() || JTFnombre.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Debe llenar todos los campos menos codigo"); 
         }else{
+
             try {
-                int idMat = Integer.parseInt(JTFid.getText());
-                String nombre = JTFnombre.getText();
-                int anio = Integer.parseInt(JTFanio.getText());
+                int idMat;
+                if(JTFid.getText().isEmpty()){
+                    idMat = 0;
+                }else{
+                    idMat = Integer.parseInt(JTFid.getText());
+                }
+                String nombre = JTFnombre.getText();    //obtener el nombre de la materia
+                int anio = Integer.parseInt(JTFanio.getText()); //obtener el año
                 boolean estado = RBestado.isSelected();
                 Materia mat = new Materia(nombre, anio, estado);
                 Materia aux = Menu.materiadata.buscarMateria(idMat);
                 if(aux == null){
                     Menu.materiadata.guardarMateria(mat);
                 }else{
-                    JOptionPane.showMessageDialog(null, "Error, el codigo ya esta en la base de datos");  
+                    Menu.materiadata.modificarMateria(mat);
                 }
                 JTFid.setText("");
                 JTFanio.setText("");
