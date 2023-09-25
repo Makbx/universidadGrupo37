@@ -95,7 +95,7 @@ public class MateriaData {
         return materia;
     }
     public List<Materia> listarMateria(){
-        String sql="SELECT nombre, año FROM materia WHERE idMateria = ? AND estado = 1";
+        String sql="SELECT idMateria, nombre, año FROM materia WHERE estado = 1";
         ArrayList<Materia> materias=new ArrayList<>();
         Materia materia=null;
         try {
@@ -106,7 +106,6 @@ public class MateriaData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
-                materia.setActivo(true);
                 materias.add(materia);
             }
             ps.close();
