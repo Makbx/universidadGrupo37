@@ -233,10 +233,11 @@ public class GestiondeMaterias extends javax.swing.JInternalFrame {
                 int anio = Integer.parseInt(JTFanio.getText()); //obtener el año
                 boolean estado = RBestado.isSelected();
                 Materia mat = new Materia(nombre, anio, estado);
-                Materia aux = Menu.materiadata.buscarMateria(idMat);
-                if(aux == null){
+                if(idMat == 0){
                     Menu.materiadata.guardarMateria(mat);
                 }else{
+                   Materia aux = Menu.materiadata.buscarMateria(idMat);
+                    mat.setIdMateria(aux.getIdMateria());
                     Menu.materiadata.modificarMateria(mat);
                 }
                 JTFid.setText("");

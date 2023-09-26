@@ -45,16 +45,19 @@ public class MateriaData {
         }
     }
     public void modificarMateria(Materia materia){
-        String sql="UPDATE materia SET nombre = ?, año = ?"
-                + "WHERE idMateria = ?";
+    String sql = "UPDATE materia SET nombre = ? , año = ? WHERE idMateria = ?";
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
+            ps.setInt(3, materia.getIdMateria());
             int exito = ps.executeUpdate();
             if(exito==1){
                 JOptionPane.showMessageDialog(null, "Materia modificada");
-            }  
+            }else{
+                JOptionPane.showMessageDialog(null, "No se actualizo la materia");
+            }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(null, "Error al acceder a la tabla materia");
         }
@@ -67,7 +70,10 @@ public class MateriaData {
             int exito = ps.executeUpdate();
             if(exito==1){
                 JOptionPane.showMessageDialog(null, "Materia Eliminada");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar la materia");
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(null, "Error al acceder a la tabla materia");
         }
