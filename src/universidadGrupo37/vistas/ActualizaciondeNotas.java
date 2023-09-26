@@ -167,6 +167,7 @@ public class ActualizaciondeNotas extends javax.swing.JInternalFrame {
             double  nota = Double.parseDouble(notaSelec);
             if(nota <=10 && nota >=0){
                 JTnotas.setValueAt(nota, JTnotas.getSelectedRow(), 2);
+                JOptionPane.showMessageDialog(null, "Click en el boton Guardar para guardar los cambios");
             }else{
                 JOptionPane.showMessageDialog(null, "La nota esta entre 0 y 10");
             }
