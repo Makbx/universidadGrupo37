@@ -236,9 +236,13 @@ public class GestiondeMaterias extends javax.swing.JInternalFrame {
                 if(idMat == 0){
                     Menu.materiadata.guardarMateria(mat);
                 }else{
-                   Materia aux = Menu.materiadata.buscarMateria(idMat);
-                    mat.setIdMateria(aux.getIdMateria());
+                   Materia aux = Menu.materiadata.buscarMateria(idMat); //Busco si el codigo ya esta en la base de datos
+                    if(aux ==null){// si no esta
+                        Menu.materiadata.guardarMateria(mat);
+                    }else{// si ya esta
+                    mat.setIdMateria(idMat);
                     Menu.materiadata.modificarMateria(mat);
+                    }
                 }
                 JTFid.setText("");
                 JTFanio.setText("");
